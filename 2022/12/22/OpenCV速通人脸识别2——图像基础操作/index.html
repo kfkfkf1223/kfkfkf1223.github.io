@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>OpenCV速通人脸识别2——图像基础操作 | KraftFret--World 1-1</title><meta name="author" content="KraftFret123"><meta name="copyright" content="KraftFret123"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="#学习笔记 #OpenCV #人脸识别 #Python #图像处理 开始这个教程是照着 B 站视频 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Lq4y1Z7dm 做的很多地方有改动 图像读取与显示先来点基础的，读取图像并显示Pycharm 先创建一个 Project，一个 Project 其实就是一个放代码的文件夹，先创建一个 py 文件命名为……什么都可以 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV速通人脸识别2——图像基础操作">
+<meta property="og:url" content="https://kfkfkf1223.github.io/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="KraftFret--World 1-1">
+<meta property="og:description" content="#学习笔记 #OpenCV #人脸识别 #Python #图像处理 开始这个教程是照着 B 站视频 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Lq4y1Z7dm 做的很多地方有改动 图像读取与显示先来点基础的，读取图像并显示Pycharm 先创建一个 Project，一个 Project 其实就是一个放代码的文件夹，先创建一个 py 文件命名为……什么都可以 123456">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg">
+<meta property="article:published_time" content="2022-12-22T02:35:05.000Z">
+<meta property="article:modified_time" content="2022-12-22T04:26:33.217Z">
+<meta property="article:author" content="KraftFret123">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://kfkfkf1223.github.io/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenCV速通人脸识别2——图像基础操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-22 12:26:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KraftFret--World 1-1</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OpenCV速通人脸识别2——图像基础操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-22T02:35:05.000Z" title="Created 2022-12-22 10:35:05">2022-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-22T04:26:33.217Z" title="Updated 2022-12-22 12:26:33">2022-12-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/A-%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">A-机器视觉与计算机视觉</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OpenCV速通人脸识别2——图像基础操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>#学习笔记 #OpenCV #人脸识别 #Python #图像处理</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>这个教程是照着 B 站视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Lq4y1Z7dm">https://www.bilibili.com/video/BV1Lq4y1Z7dm</a> 做的<br>很多地方有改动</p>
+<h1 id="图像读取与显示"><a href="#图像读取与显示" class="headerlink" title="图像读取与显示"></a>图像读取与显示</h1><p>先来点基础的，读取图像并显示<br>Pycharm 先创建一个 Project，一个 Project 其实就是一个放代码的文件夹，先创建一个 py 文件命名为……什么都可以</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">RandS</span>():  </span><br><span class="line">    <span class="comment"># 读取图片  </span></span><br><span class="line">    img = cv.imread(<span class="string">&#x27;DaBian1.png&#x27;</span>)  </span><br><span class="line">    <span class="comment"># 显示图片  </span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;Hao Jing&#x27;</span>, img)  </span><br><span class="line">    <span class="comment"># 等待  </span></span><br><span class="line">    cv.waitKey(<span class="number">0</span>)  </span><br><span class="line">    <span class="comment"># 关闭窗口  </span></span><br><span class="line">    cv.destroyAllWindows()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    RandS()</span><br></pre></td></tr></table></figure>
+<p>需要注意的地方</p>
+<ol>
+<li>图片最好放你工程文件夹里，如果和你的 py 在一个文件夹里那直接写文件名. 后缀名就可以，如果在别的文件夹里就需要改为 <code>./folder/DaBian1.png</code></li>
+<li>按键就可以关闭窗口，要是点图片右上角叉号退出是不会结束进程的，下次执行需要点右上角红色小方块停止运行<br>执行结果<br><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222105224.png"></li>
+</ol>
+<h2 id="导入-OpenCV"><a href="#导入-OpenCV" class="headerlink" title="导入 OpenCV"></a>导入 OpenCV</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv  </span><br></pre></td></tr></table></figure>
+<p>如果导不进去或者是没有代码提示肯定是配置有毛病，需要进行漫长的排除问题的过程~</p>
+<h2 id="读取图片"><a href="#读取图片" class="headerlink" title="读取图片"></a>读取图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv.imread(<span class="string">&#x27;DaBian1.png&#x27;</span>)  </span><br></pre></td></tr></table></figure>
+<p>这是读取一个文件，返回到图片的矩阵 <code>img</code><br>如果想看可以 <code>print(img)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[[[ 82  97 135]</span><br><span class="line">  [ 82  97 134]</span><br><span class="line">  [ 82  96 134]</span><br><span class="line">  ...</span><br><span class="line">  [104 162 248]</span><br><span class="line">  [103 161 248]</span><br><span class="line">  [103 160 248]]</span><br><span class="line"></span><br><span class="line"> [[ 81  96 135]</span><br><span class="line">  [ 81  96 135]</span><br><span class="line">  [ 81  95 134]</span><br><span class="line">  ...</span><br><span class="line">  [104 161 250]</span><br><span class="line">  [103 160 251]</span><br><span class="line">  [103 159 251]]</span><br><span class="line"></span><br><span class="line"> [[ 81  95 135]</span><br><span class="line">  [ 81  95 135]</span><br><span class="line">  [ 81  95 134]</span><br><span class="line">  ...</span><br><span class="line">  [104 160 251]</span><br><span class="line">  [103 159 251]</span><br><span class="line">  [103 159 252]]</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line"> [[ 87  99 151]</span><br><span class="line">  [ 88  99 151]</span><br><span class="line">  [ 88  99 151]</span><br><span class="line">  ...</span><br><span class="line">  [114  82  90]</span><br><span class="line">  [115  81  89]</span><br><span class="line">  [115  81  89]]</span><br><span class="line"></span><br><span class="line"> [[ 88  99 151]</span><br><span class="line">  [ 88  99 151]</span><br><span class="line">  [ 88  99 151]</span><br><span class="line">  ...</span><br><span class="line">  [113  81  89]</span><br><span class="line">  [114  81  89]</span><br><span class="line">  [115  81  89]]</span><br><span class="line"></span><br><span class="line"> [[ 88 100 151]</span><br><span class="line">  [ 88 100 151]</span><br><span class="line">  [ 88 100 151]</span><br><span class="line">  ...</span><br><span class="line">  [111  81  89]</span><br><span class="line">  [113  81  89]</span><br><span class="line">  [115  81  89]]]</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+<p>这就是执行结果，这就是图片</p>
+<h2 id="显示图片"><a href="#显示图片" class="headerlink" title="显示图片"></a>显示图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示图片  </span></span><br><span class="line">cv.imshow(<span class="string">&#x27;Hao Jing&#x27;</span>, img) </span><br></pre></td></tr></table></figure>
+<p>第一个参数 <code>&#39;Hao Jing&#39;</code> 是窗口上的名称，字符串格式<br>第二个则是 <code>img</code>，是图片的矩阵，就是上面那一大长串</p>
+<h2 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等待  </span></span><br><span class="line">cv.waitKey(<span class="number">0</span>)  </span><br></pre></td></tr></table></figure>
+<p>返回的是按键，里面的 0 代表一直等着用户按键，可以基于这个弄一个按指定按键关闭~<br>不加这一行的话图片闪一下就关了</p>
+<h2 id="关闭窗口"><a href="#关闭窗口" class="headerlink" title="关闭窗口"></a>关闭窗口</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭窗口  </span></span><br><span class="line">cv.destroyAllWindows()  </span><br></pre></td></tr></table></figure>
+<p>就是关闭窗口</p>
+<h1 id="图片的灰度处理"><a href="#图片的灰度处理" class="headerlink" title="图片的灰度处理"></a>图片的灰度处理</h1><p>需要人脸识别的时候是需要把图像处理为灰度的</p>
+<blockquote>
+<p>灰度就是… 灰的，没有 RGB 的信息，每一个像素之有 0 到 255 的值</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">RandS</span>():  </span><br><span class="line">    <span class="comment"># 读取图片  </span></span><br><span class="line">    img = cv.imread(<span class="string">&#x27;DaBian1.png&#x27;</span>)  </span><br><span class="line">    <span class="comment"># 灰度转换  </span></span><br><span class="line">    gray_img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)  </span><br><span class="line">    <span class="comment"># 显示图片  </span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;Hao Jing_gray&#x27;</span>, gray_img)  </span><br><span class="line">    <span class="comment"># 保存灰度图片  </span></span><br><span class="line">    cv.imwrite(<span class="string">&#x27;Hao Jing_gray.jpg&#x27;</span>, gray_img)  </span><br><span class="line">    <span class="comment"># 等待  </span></span><br><span class="line">    cv.waitKey(<span class="number">0</span>)  </span><br><span class="line">    <span class="comment"># 关闭窗口</span></span><br><span class="line">    cv.destroyAllWindows()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    RandS()</span><br></pre></td></tr></table></figure>
+<p>执行结果</p>
+<p><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222105716.png"><br>昊————京————</p>
+<h2 id="灰度转换"><a href="#灰度转换" class="headerlink" title="灰度转换"></a>灰度转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 灰度转换  </span></span><br><span class="line">gray_img = cv.cvtColor(img, cv.COLOR_BGR2GRAY) </span><br></pre></td></tr></table></figure>
+<p>其中 <code>cv.cvtColor(img, cv.COLOR_BGR2GRAY) </code> 是负责转换颜色的，第一个是原图的图片矩阵，第二个是转换的模式，其中 <code>cv.COLOR_BGR2GRAY</code> 就是 BGR to GRAY 字面意思，<strong>需要注意的是在 OpenCV 里很多时候 RGB 是以 BGR 的顺序显示的</strong></p>
+<h2 id="图片保存"><a href="#图片保存" class="headerlink" title="图片保存"></a>图片保存</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存灰度图片  </span></span><br><span class="line">cv.imwrite(<span class="string">&#x27;Hao Jing_gray.jpg&#x27;</span>, gray_img) </span><br></pre></td></tr></table></figure>
+<p>第一个是路径文件名 第二个是矩阵</p>
+<h1 id="更改图片大小"><a href="#更改图片大小" class="headerlink" title="更改图片大小"></a>更改图片大小</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">RandS</span>():  </span><br><span class="line">    <span class="comment"># 读取图片  </span></span><br><span class="line">    img = cv.imread(<span class="string">&#x27;rickroll1.png&#x27;</span>)  </span><br><span class="line">    <span class="comment"># 修改尺寸  </span></span><br><span class="line">    resize_img = cv.resize(img, dsize = (<span class="number">200</span>, <span class="number">200</span>))  </span><br><span class="line">    <span class="comment"># 显示图片  </span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;Rick&#x27;</span>, img)  </span><br><span class="line">    <span class="comment"># 显示修改后的  </span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;Resized Rick&#x27;</span>, resize_img)  </span><br><span class="line">    <span class="comment"># 打印原图片大小  </span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Normal&#x27;</span>, img.shape)  </span><br><span class="line">    <span class="comment"># 打印修改后的大小  </span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Resized&#x27;</span>, resize_img.shape)  </span><br><span class="line">    <span class="comment"># 等待  </span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>) == cv.waitKey(<span class="number">0</span>):  </span><br><span class="line">            <span class="keyword">break</span>  </span><br><span class="line">    <span class="comment"># 释放内存  </span></span><br><span class="line">    cv.destroyAllWindows()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    RandS()</span><br></pre></td></tr></table></figure>
+<p>执行结果是两个图片<br><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222110514.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Normal (983, 1375, 3)</span><br><span class="line">Resized (200, 200, 3)</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<p>从打印出的数据可以看到，图片从 (983, 1375, 3) 更改为 (200, 200, 3)<br>其中：</p>
+<ul>
+<li>983, 1375 代表着长宽，图片的大小</li>
+<li>3 代表着 BGR 三种颜色</li>
+</ul>
+<h2 id="修改图片尺寸"><a href="#修改图片尺寸" class="headerlink" title="修改图片尺寸"></a>修改图片尺寸</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改尺寸  </span></span><br><span class="line">resize_img = cv.resize(img, dsize = (<span class="number">200</span>, <span class="number">200</span>))  </span><br></pre></td></tr></table></figure>
+<p>把矩阵 <code>img</code> 的大小改变，放进 <code>resize_img</code>，<code>dsize = (200, 200)</code> 为大小，长宽为 200 200</p>
+<h1 id="绘制图形"><a href="#绘制图形" class="headerlink" title="绘制图形"></a>绘制图形</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_rectangle</span>():  </span><br><span class="line">    <span class="comment"># 读取图片  </span></span><br><span class="line">    img = cv.imread(<span class="string">&#x27;the_wicher3_3.jpg&#x27;</span>)  </span><br><span class="line">    <span class="comment"># 坐标  </span></span><br><span class="line">    x,y,w,h = <span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>  </span><br><span class="line">    <span class="comment"># 绘制矩形  </span></span><br><span class="line">    cv.rectangle(img, (x, y), (x+w, y+h), color = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), thickness=<span class="number">1</span>)  </span><br><span class="line">    <span class="comment"># 绘制圆形  </span></span><br><span class="line">    cv.circle(img, center=(x+w, y+h),radius=<span class="number">100</span>,color= (<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>), thickness=<span class="number">5</span>)  </span><br><span class="line">    <span class="comment"># 显示  </span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;draw_rec and cir&#x27;</span>, img)  </span><br><span class="line">    <span class="comment"># 等待  </span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>) == cv.waitKey(<span class="number">0</span>):  </span><br><span class="line">            <span class="keyword">break</span>  </span><br><span class="line">    <span class="comment"># 释放内存  </span></span><br><span class="line">    cv.destroyAllWindows()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    draw_rectangle()</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222111919.png"></p>
+<h2 id="绘制矩形与圆形"><a href="#绘制矩形与圆形" class="headerlink" title="绘制矩形与圆形"></a>绘制矩形与圆形</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制矩形  </span></span><br><span class="line">cv.rectangle(img, (x, y), (x+w, y+h), color = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), thickness=<span class="number">1</span>)  </span><br><span class="line"><span class="comment"># 绘制圆形  </span></span><br><span class="line">cv.circle(img, center=(x+w, y+h),radius=<span class="number">100</span>,color= (<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>), thickness=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>cv. rectangle (图形, 一个点坐标, 另一个点坐标, 颜色, 线条宽度)<br>cv. circle (图形, center&#x3D;圆心, radius&#x3D;半径, color&#x3D; (255, 0, 0), thickness&#x3D;线条宽度)</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/"><img class="prev-cover" src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">OpenCV一小时速通人脸识别</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">~@%3wlec*oe @t lWord %1-1&%#$~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%98%BE%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">图像读取与显示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5-OpenCV"><span class="toc-number">2.1.</span> <span class="toc-text">导入 OpenCV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87"><span class="toc-number">2.2.</span> <span class="toc-text">读取图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87"><span class="toc-number">2.3.</span> <span class="toc-text">显示图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E5%BE%85"><span class="toc-number">2.4.</span> <span class="toc-text">等待</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="toc-number">2.5.</span> <span class="toc-text">关闭窗口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E7%81%B0%E5%BA%A6%E5%A4%84%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">图片的灰度处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.1.</span> <span class="toc-text">灰度转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%BF%9D%E5%AD%98"><span class="toc-number">3.2.</span> <span class="toc-text">图片保存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F"><span class="toc-number">4.</span> <span class="toc-text">更改图片大小</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8"><span class="toc-number">4.1.</span> <span class="toc-text">修改图片尺寸</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2"><span class="toc-number">5.</span> <span class="toc-text">绘制图形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E7%9F%A9%E5%BD%A2%E4%B8%8E%E5%9C%86%E5%BD%A2"><span class="toc-number">5.1.</span> <span class="toc-text">绘制矩形与圆形</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="OpenCV速通人脸识别2——图像基础操作"><img src="https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCV速通人脸识别2——图像基础操作"/></a><div class="content"><a class="title" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="OpenCV速通人脸识别2——图像基础操作">OpenCV速通人脸识别2——图像基础操作</a><time datetime="2022-12-22T02:35:05.000Z" title="Created 2022-12-22 10:35:05">2022-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/" title="OpenCV一小时速通人脸识别"><img src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCV一小时速通人脸识别"/></a><div class="content"><a class="title" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/" title="OpenCV一小时速通人脸识别">OpenCV一小时速通人脸识别</a><time datetime="2022-12-22T01:28:28.000Z" title="Created 2022-12-22 09:28:28">2022-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/15/%E7%9B%B4%E6%92%AD%E5%85%AC%E5%91%8A/" title="24/7直播间直播公告"><img src="https://pic.imgdb.cn/item/63902b75b1fccdcd36e023ec.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="24/7直播间直播公告"/></a><div class="content"><a class="title" href="/2022/12/15/%E7%9B%B4%E6%92%AD%E5%85%AC%E5%91%8A/" title="24/7直播间直播公告">24/7直播间直播公告</a><time datetime="2022-12-15T04:20:12.000Z" title="Created 2022-12-15 12:20:12">2022-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/15/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E6%9D%90/" title="机器人教材"><img src="https://pic.imgdb.cn/item/63902b86b1fccdcd36e03d62.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人教材"/></a><div class="content"><a class="title" href="/2022/12/15/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E6%9D%90/" title="机器人教材">机器人教材</a><time datetime="2022-12-15T03:44:56.000Z" title="Created 2022-12-15 11:44:56">2022-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/12/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="机器人控制系统基础知识"><img src="https://pic.imgdb.cn/item/63902b86b1fccdcd36e03d62.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人控制系统基础知识"/></a><div class="content"><a class="title" href="/2022/12/12/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="机器人控制系统基础知识">机器人控制系统基础知识</a><time datetime="2022-12-12T14:00:34.000Z" title="Created 2022-12-12 22:00:34">2022-12-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By KraftFret123</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="t,e,x" data-fontsize="13px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

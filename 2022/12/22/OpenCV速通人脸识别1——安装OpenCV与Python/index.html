@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>OpenCV一小时速通人脸识别 | KraftFret--World 1-1</title><meta name="author" content="KraftFret123"><meta name="copyright" content="KraftFret123"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="#学习笔记 #OpenCV #人脸识别 #Python 开始环境配置这件事情向来都很玄学经常遇到的问题：  python 的环境变量 PyCharm 识别不到解释器 OpenCV 装不上 OpenCV 装上了但编译器不提示 OpenCV 装上了编译器提示但提示不全 下载、安装包报错我的环境配置是 Anaconda+PyCharm平时都用 VS Code 这次打算试试不一样的东西发现 PyCharm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV一小时速通人脸识别">
+<meta property="og:url" content="https://kfkfkf1223.github.io/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/index.html">
+<meta property="og:site_name" content="KraftFret--World 1-1">
+<meta property="og:description" content="#学习笔记 #OpenCV #人脸识别 #Python 开始环境配置这件事情向来都很玄学经常遇到的问题：  python 的环境变量 PyCharm 识别不到解释器 OpenCV 装不上 OpenCV 装上了但编译器不提示 OpenCV 装上了编译器提示但提示不全 下载、安装包报错我的环境配置是 Anaconda+PyCharm平时都用 VS Code 这次打算试试不一样的东西发现 PyCharm">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg">
+<meta property="article:published_time" content="2022-12-22T01:28:28.000Z">
+<meta property="article:modified_time" content="2022-12-22T02:32:17.529Z">
+<meta property="article:author" content="KraftFret123">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://kfkfkf1223.github.io/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenCV一小时速通人脸识别',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-22 10:32:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KraftFret--World 1-1</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OpenCV一小时速通人脸识别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-22T01:28:28.000Z" title="Created 2022-12-22 09:28:28">2022-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-22T02:32:17.529Z" title="Updated 2022-12-22 10:32:17">2022-12-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/A-%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">A-机器视觉与计算机视觉</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">732</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OpenCV一小时速通人脸识别"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>#学习笔记 #OpenCV #人脸识别 #Python</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>环境配置这件事情向来都很玄学<br>经常遇到的问题：</p>
+<ul>
+<li>python 的环境变量</li>
+<li>PyCharm 识别不到解释器</li>
+<li>OpenCV 装不上</li>
+<li>OpenCV 装上了但编译器不提示</li>
+<li>OpenCV 装上了编译器提示但提示不全</li>
+<li>下载、安装包报错<br>我的环境配置是 Anaconda+PyCharm<br>平时都用 VS Code 这次打算试试不一样的东西发现 PyCharm 还是挺不错的~</li>
+</ul>
+<h1 id="安装-Anaconda"><a href="#安装-Anaconda" class="headerlink" title="安装 Anaconda"></a>安装 Anaconda</h1><p>Anaconda 是一个挺大的 Python……<br>内置了很多包，在 Anaconda 的基础之上安装一个 OpenCV 就齐活了，不需要再安装其他的东西</p>
+<h2 id="官网下载安装包"><a href="#官网下载安装包" class="headerlink" title="官网下载安装包"></a>官网下载安装包</h2><p><a target="_blank" rel="noopener" href="https://www.anaconda.com/">Anaconda官网</a><br>官网下载不动可以去国内的镜像站下载<br><a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/anaconda/archive/">国内镜像站</a><br><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222100658.png"><br>找个新版本就好~ 看准自己的操作系统</p>
+<h2 id="打开安装"><a href="#打开安装" class="headerlink" title="打开安装"></a>打开安装</h2><p>下载安装即可<br><strong>注意：后面有一段提示是否添加环境变量 PATH，选不选都 OK，反正心里有数就行，不行之后添加也行</strong></p>
+<h1 id="安装PyCharm"><a href="#安装PyCharm" class="headerlink" title="安装PyCharm"></a>安装PyCharm</h1><p>上官网下载安装包<br><a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/">JetBrains官网</a><br><code>PyCharm Community Edition</code> 是免费的，对非科班非专业的来说足够足够了<br>打开 PyCharm 直接在 Interpreter 设置 Anaconda 就可以，选上安装好的 Anaconda，按提示来</p>
+<blockquote>
+<p>其实这段也没啥太好说的，但总会遇到些问题，具体想了解可以上网看看别的</p>
+</blockquote>
+<h1 id="了解包管理器-pip-与-conda"><a href="#了解包管理器-pip-与-conda" class="headerlink" title="了解包管理器 pip 与 conda"></a>了解包管理器 pip 与 conda</h1><p>PIP 和 conda 都是 python 包的管理工具，类似于 Linux 里的包管理 apt 这种的~，管理这些包，可以搜索下载安装的工具，相当于 Steam 创意工坊直接一键下载 MOD。<br>至于 PIP 和 conda 的具体区别，这个文章里有详细介绍<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/343947822">介绍两者区别的文章</a>，反正我是没看懂<br>只知道 PIP 是 Python 自带的，conda 是 Anaconda 自带的…</p>
+<h2 id="PIP-国内源配置"><a href="#PIP-国内源配置" class="headerlink" title="PIP 国内源配置"></a>PIP 国内源配置</h2><p>既然是直接连接人家服务器下载安装包，那就涉及到更换源的操作，要不然连接国外服务器还是大概率会因为速度太慢报错的<br>清华大学的源： <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/">https://mirrors.tuna.tsinghua.edu.cn/help/pypi/</a><br>写的很明白了，注意的是如果没配置环境变量直接运行这个是不好用的，打开电脑里的 Anaconda Prompt 应该能直接运行~</p>
+<h2 id="Conda-国内源配置"><a href="#Conda-国内源配置" class="headerlink" title="Conda 国内源配置"></a>Conda 国内源配置</h2><p>同理，清华大学： <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+<h1 id="安装OpenCV"><a href="#安装OpenCV" class="headerlink" title="安装OpenCV"></a>安装OpenCV</h1><p>该安装 OpenCV 了~<br>安装包有两大类方式，一种是命令行另一种是用 PyCharm，两种方法不分好坏能实现目的就好~<br>要安装的是 OpenCV pyopencv 和 pillow</p>
+<h2 id="PyCharm-安装"><a href="#PyCharm-安装" class="headerlink" title="PyCharm 安装"></a>PyCharm 安装</h2><p><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222102428.png"><br>之前说 Anaconda 比直接装 Python 大，都大在这了~<br>Anaconda 自带很多包的，点击 <code>+</code> 按钮<br><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20221222102741.png"><br>搜索，安装一气呵成<br>安装 pillow 同理</p>
+<h2 id="命令行安装"><a href="#命令行安装" class="headerlink" title="命令行安装"></a>命令行安装</h2><p>打开 Anaconda Prompt，输入 <code>conda install py-opencv</code><br><code>conda install opencv</code><br><code>conda install pillow</code><br>其实能用图形界面我都懒得用命令行~</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/15/%E7%9B%B4%E6%92%AD%E5%85%AC%E5%91%8A/"><img class="prev-cover" src="https://pic.imgdb.cn/item/63902b75b1fccdcd36e023ec.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">24/7直播间直播公告</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/"><img class="next-cover" src="https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">OpenCV速通人脸识别2——图像基础操作</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">~@%3wlec*oe @t lWord %1-1&%#$~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Anaconda"><span class="toc-number">2.</span> <span class="toc-text">安装 Anaconda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">2.1.</span> <span class="toc-text">官网下载安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">打开安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85PyCharm"><span class="toc-number">3.</span> <span class="toc-text">安装PyCharm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8-pip-%E4%B8%8E-conda"><span class="toc-number">4.</span> <span class="toc-text">了解包管理器 pip 与 conda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PIP-%E5%9B%BD%E5%86%85%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">PIP 国内源配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conda-%E5%9B%BD%E5%86%85%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">Conda 国内源配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85OpenCV"><span class="toc-number">5.</span> <span class="toc-text">安装OpenCV</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PyCharm-%E5%AE%89%E8%A3%85"><span class="toc-number">5.1.</span> <span class="toc-text">PyCharm 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">5.2.</span> <span class="toc-text">命令行安装</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="OpenCV速通人脸识别2——图像基础操作"><img src="https://pic.imgdb.cn/item/63902d32b1fccdcd36e50bf8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCV速通人脸识别2——图像基础操作"/></a><div class="content"><a class="title" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB2%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="OpenCV速通人脸识别2——图像基础操作">OpenCV速通人脸识别2——图像基础操作</a><time datetime="2022-12-22T02:35:05.000Z" title="Created 2022-12-22 10:35:05">2022-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/" title="OpenCV一小时速通人脸识别"><img src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCV一小时速通人脸识别"/></a><div class="content"><a class="title" href="/2022/12/22/OpenCV%E9%80%9F%E9%80%9A%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB1%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV%E4%B8%8EPython/" title="OpenCV一小时速通人脸识别">OpenCV一小时速通人脸识别</a><time datetime="2022-12-22T01:28:28.000Z" title="Created 2022-12-22 09:28:28">2022-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/15/%E7%9B%B4%E6%92%AD%E5%85%AC%E5%91%8A/" title="24/7直播间直播公告"><img src="https://pic.imgdb.cn/item/63902b75b1fccdcd36e023ec.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="24/7直播间直播公告"/></a><div class="content"><a class="title" href="/2022/12/15/%E7%9B%B4%E6%92%AD%E5%85%AC%E5%91%8A/" title="24/7直播间直播公告">24/7直播间直播公告</a><time datetime="2022-12-15T04:20:12.000Z" title="Created 2022-12-15 12:20:12">2022-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/15/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E6%9D%90/" title="机器人教材"><img src="https://pic.imgdb.cn/item/63902b86b1fccdcd36e03d62.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人教材"/></a><div class="content"><a class="title" href="/2022/12/15/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E6%9D%90/" title="机器人教材">机器人教材</a><time datetime="2022-12-15T03:44:56.000Z" title="Created 2022-12-15 11:44:56">2022-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/12/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="机器人控制系统基础知识"><img src="https://pic.imgdb.cn/item/63902b86b1fccdcd36e03d62.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人控制系统基础知识"/></a><div class="content"><a class="title" href="/2022/12/12/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="机器人控制系统基础知识">机器人控制系统基础知识</a><time datetime="2022-12-12T14:00:34.000Z" title="Created 2022-12-12 22:00:34">2022-12-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By KraftFret123</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="t,e,x" data-fontsize="13px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
