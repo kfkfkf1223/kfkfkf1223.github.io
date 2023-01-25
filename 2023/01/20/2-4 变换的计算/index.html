@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>2-4 变换的计算 | KraftFret--World 1-1</title><meta name="author" content="KraftFret123"><meta name="copyright" content="KraftFret123"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="#学习笔记 #机器人模块 #机器人理论 #机器人运动学 #空间描述与坐标变换上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍变换的乘法和变换的逆运算。# 复合变换在图中，已知 $^CP$ 求 $^AP$已知坐标系{C}相对于坐标系{B}，并已知坐标系{B}相对于坐标系{A}。$${C}\rightarrow{B} \quad{B}\rightarrow{A}$$将 $^CP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2-4 变换的计算">
+<meta property="og:url" content="https://kfkfkf1223.github.io/2023/01/20/2-4%20%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97/index.html">
+<meta property="og:site_name" content="KraftFret--World 1-1">
+<meta property="og:description" content="#学习笔记 #机器人模块 #机器人理论 #机器人运动学 #空间描述与坐标变换上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍变换的乘法和变换的逆运算。# 复合变换在图中，已知 $^CP$ 求 $^AP$已知坐标系{C}相对于坐标系{B}，并已知坐标系{B}相对于坐标系{A}。$${C}\rightarrow{B} \quad{B}\rightarrow{A}$$将 $^CP">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63902d43b1fccdcd36e542cd.jpg">
+<meta property="article:published_time" content="2023-01-20T13:42:04.000Z">
+<meta property="article:modified_time" content="2023-01-21T04:40:40.781Z">
+<meta property="article:author" content="KraftFret123">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/63902d43b1fccdcd36e542cd.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://kfkfkf1223.github.io/2023/01/20/2-4%20%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2-4 变换的计算',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-21 12:40:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/63902d43b1fccdcd36e542cd.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KraftFret--World 1-1</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2-4 变换的计算</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-01-20T13:42:04.000Z" title="Created 2023-01-20 21:42:04">2023-01-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-01-21T04:40:40.781Z" title="Updated 2023-01-21 12:40:40">2023-01-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/A-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9B%B8%E5%85%B3/">A-机器人相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2-4 变换的计算"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="学习笔记-机器人模块-机器人理论-机器人运动学-空间描述与坐标变换上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍变换的乘法和变换的逆运算。-复合变换在图中，已知-CP-求-AP-已知坐标系-C-相对于坐标系-B-，并已知坐标系-B-相对于坐标系-A-。-C-rightarrow-B-quad-B-rightarrow-A-将-CP-变换为-BP-：-BP-x3D-B-C-T-CP-然后将-BP-变换为-AP-：-AP-x3D-A-B-T-BP-将两式联合可以得到：-AP-x3D-A-B-T-B-C-T-CP-由此可以定义：-A-C-T-x3D-A-B-T-B-C-T-可以求出-A-C-T-：-A-C-T-x3D-begin-pmatrix-A-B-R-amp-AP-BORG-0-amp-1-end-pmatrix-begin-pmatrix-B-C-R-amp-BP-CORG-0-amp-1-end-pmatrix-然后求得：-A-C-T"><a href="#学习笔记-机器人模块-机器人理论-机器人运动学-空间描述与坐标变换上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍变换的乘法和变换的逆运算。-复合变换在图中，已知-CP-求-AP-已知坐标系-C-相对于坐标系-B-，并已知坐标系-B-相对于坐标系-A-。-C-rightarrow-B-quad-B-rightarrow-A-将-CP-变换为-BP-：-BP-x3D-B-C-T-CP-然后将-BP-变换为-AP-：-AP-x3D-A-B-T-BP-将两式联合可以得到：-AP-x3D-A-B-T-B-C-T-CP-由此可以定义：-A-C-T-x3D-A-B-T-B-C-T-可以求出-A-C-T-：-A-C-T-x3D-begin-pmatrix-A-B-R-amp-AP-BORG-0-amp-1-end-pmatrix-begin-pmatrix-B-C-R-amp-BP-CORG-0-amp-1-end-pmatrix-然后求得：-A-C-T" class="headerlink" title="#学习笔记 #机器人模块 #机器人理论 #机器人运动学 #空间描述与坐标变换上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍变换的乘法和变换的逆运算。# 复合变换在图中，已知 $^CP$ 求 $^AP$已知坐标系{C}相对于坐标系{B}，并已知坐标系{B}相对于坐标系{A}。$${C}\rightarrow{B} \quad{B}\rightarrow{A}$$将 $^CP$ 变换为 $^BP$ ：$$^BP&#x3D;^B_{C}T^CP$$然后将 $^BP$ 变换为 $^AP$ ：$$^AP&#x3D;^A_{B}T^BP$$将两式联合可以得到：$$^AP&#x3D;^A_{B}T^B_{C}T^CP$$由此可以定义：$$^A_{C}T&#x3D;^A_{B}T^B_{C}T$$可以求出 $^A_{C}T$ ：$$^A_{C}T&#x3D;\begin{pmatrix}^A_{B}R &amp; ^AP_{BORG} \0 &amp; 1\end{pmatrix}\begin{pmatrix}^B_{C}R &amp; ^BP_{CORG} \0 &amp; 1\end{pmatrix}$$然后求得：$$^A_{C}T"></a>#学习笔记 #机器人模块 #机器人理论 #机器人运动学 #空间描述与坐标变换<br>上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍<strong>变换的乘法</strong>和<strong>变换的逆运算</strong>。<br># 复合变换<br><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20230121112430.png"><br>在图中，已知 $^CP$ 求 $^AP$<br>已知坐标系{C}相对于坐标系{B}，并已知坐标系{B}相对于坐标系{A}。<br>$$<br>{C}\rightarrow{B} \quad{B}\rightarrow{A}<br>$$<br>将 $^CP$ 变换为 $^BP$ ：<br>$$<br>^BP&#x3D;^B_{C}T^CP<br>$$<br>然后将 $^BP$ 变换为 $^AP$ ：<br>$$<br>^AP&#x3D;^A_{B}T^BP<br>$$<br>将两式联合可以得到：<br>$$<br>^AP&#x3D;^A_{B}T^B_{C}T^CP<br>$$<br>由此可以定义：<br>$$<br>^A_{C}T&#x3D;^A_{B}T^B_{C}T<br>$$<br>可以求出 $^A_{C}T$ ：<br>$$<br>^A_{C}T&#x3D;\begin{pmatrix}<br>^A_{B}R &amp; ^AP_{BORG} \<br>0 &amp; 1<br>\end{pmatrix}<br>\begin{pmatrix}<br>^B_{C}R &amp; ^BP_{CORG} \<br>0 &amp; 1<br>\end{pmatrix}<br>$$<br>然后求得：<br>$$<br>^A_{C}T</h1><p>\left(\begin{array}{ccc:c}<br>&amp;^A_{B}R^B_{C}R &amp;&amp; ^A_{B}R^BP_{CORG}+^AP_{BORG} \<br>\hdashline<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)<br>$$</p>
+<h1 id="逆变换"><a href="#逆变换" class="headerlink" title="逆变换"></a>逆变换</h1><p>已知{B}相对于{A}的描述，也就是 $^A_{B}T$ ，想要去求{A}相对于{B}的描述，也就是对已知的 $^A_{B}T$ 去求逆，想求得这个矩阵的逆可以直接进行求逆操作，但是这并没有利用到<strong>变换的性质</strong>，下面就要利用变换的性质对矩阵进行求逆。<br>由 [[2-1 描述位姿#姿态描述]]可以得到旋转矩阵的性质：<br>$$<br>^B_{A}R&#x3D;^A_{B}R^T<br>$$<br>再利用到 [[2-2 坐标映射#一般变换]] 当中的性质，将 $^AP_{BORG}$ 转变为在{B}当中的描述：<br>对于 $^AP_{BORG}$ 可以得到：<br>$$<br>^AP_{BORG}&#x3D;^A_{B}R^BP_{BORG}+^AP_{BORG}<br>$$<br>转换为在{B}的描述：<br>$$<br>^B(^AP_{BORG})&#x3D;^B_{A}R^AP_{BORG}+^BP_{AORG}<br>$$<br>左边为零，可以得到：<br>$$<br>^BP_{AORG}&#x3D;-^B_{A}R^AP_{BORG}&#x3D;-^A_{B}R^T\ ^AP_{BORG}<br>$$<br>所以就可以求得 $^B_{A}T$ ：<br>$$<br>^B_{A}T&#x3D;\left(\begin{array} {ccc:c}<br>&amp;^B_{A}R &amp;&amp; ^BP_{AORG} \<br>\hdashline<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)<br>&#x3D;\left(\begin{array}{ccc:c}<br>&amp;^A_{B}R^T &amp;&amp; -^A_{B}R^T\ ^AP_{BORG} \<br>\hdashline<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)</p>
+<p>$$<br>常用于变换矩阵求逆：<br>$$<br>^B_{A}T&#x3D;^A_{B}T^{-1}&#x3D;\left(\begin{array}{ccc:c}<br>&amp;^A_{B}R^T &amp;&amp; -^A_{B}R^T\ ^AP_{BORG} \<br>\hdashline<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)<br>$$</p>
+<h2 id="例-2-5-求逆应用"><a href="#例-2-5-求逆应用" class="headerlink" title="例 2.5-求逆应用"></a>例 2.5-求逆应用</h2><p><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20230121115959.png"><br>坐标系{B}绕着坐标系{A}的 $\hat{Z}$ 轴旋转 30 度，沿着 $\hat{X}<em>{A}$ 平移 4，沿着 $\hat{Y}</em>{A}$ 平移 3，得到 $^A_{B}T$，求 $^B_{A}T$</p>
+<blockquote>
+<p>定义坐标系{B}</p>
+</blockquote>
+<p>$$<br>^A_{B}T&#x3D;\left(\begin{array} \</p>
+<p>\frac{\sqrt{ 3 }}{2} &amp; \frac{1}{2}  &amp; 0 &amp; 4 \<br>\frac{1}{2} &amp; \frac{\sqrt{ 3 }}{2} &amp; 0 &amp; 3 \<br>0 &amp; 0 &amp; 1 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right)<br>$$</p>
+<blockquote>
+<p>用上面公式进行求逆</p>
+</blockquote>
+<p>$$<br>^B_AT&#x3D;\begin{pmatrix}<br>\frac{\sqrt{ 3 }}{2}  &amp; \frac{1}{2} &amp; 0 &amp; -2\sqrt{ 3 }-\frac{3}{2} \<br>-\frac{1}{2} &amp; \frac{\sqrt{ 3 }}{2} &amp; 0 &amp; 2-\frac{3\sqrt{ 3 }}{2} \<br>0 &amp; 0 &amp; 1 &amp; 0 \<br>\hline<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{pmatrix}<br>$$</p>
+<blockquote>
+<p>也就是旋转的部分转置一下，平移的部分计算一个 $-^A_{B}R^T\ ^AP_{BORG}$</p>
+</blockquote>
+<h1 id="变换方程"><a href="#变换方程" class="headerlink" title="变换方程"></a>变换方程</h1><p><img src="https://img12334.oss-cn-beijing.aliyuncs.com/img/20230121122613.png"><br>图中{D}可以通过两种不同的方式表达成<strong>变换相乘的形式</strong><br>第一种：<br>$$<br>^U_{D}T&#x3D;^U_{A}T^A_{D}T<br>$$<br>第二种：<br>$$<br>^U_{D}T&#x3D;^U_{B}T^B_{C}T^C_{D}T<br>$$<br>两个表达式构造成一个变换方程,，两个式子右边部分相等：<br>$$<br>^U_{A}T^A_{D}T&#x3D;^U_{B}T^B_{C}T^C_{D}T<br>$$<br>假设上个式子当中除了 $^B_{C}T$ 以外均为已知，则目前有一个变换方程和一个未知变换，可以解出：<br>$$<br>^B_{C}T&#x3D;^U_{B}T^{-1}\ ^U_{A}T\ ^A_{D}T\ ^C_{D}T^{-1}<br>$$</p>
+<blockquote>
+<p>假设有 n 个未知变换以及 n 个变换方程，变换就可以由变换方程解出，例如上面的式子就是通过一个变换方程来接触一个未知变换</p>
+</blockquote>
+<h1 id="关于计算问题"><a href="#关于计算问题" class="headerlink" title="关于计算问题"></a>关于计算问题</h1><p>计算成本的降低可以促进机器人产业的发展，然而在操作系统的设计当中，高效的计算能力始终是一个重要的问题。<br>在之前几节当中时常使用齐次变换，但是在典型工业机器人上使用的变换软件<strong>并不直接采用齐次变换，因为使用齐次变换会浪费大量的时间在数字 0 和 1 的相乘上面</strong><br>当计算相同的内容时，不同的计算顺序会导致计算量的差别很大，例如对矢量的多次旋转：<br>$$<br>^AP&#x3D;^A_{B}R\ ^B_{C}R\ ^C_{D}R \ ^DP<br>$$<br>有两种计算顺序：</p>
+<ol>
+<li>先将三个旋转矩阵相乘得到 $^A_{D}R$，共需要 63 次乘法和 42 次加法运算</li>
+<li>一次做一个矩阵计算，对 $^DP$ 顺着进行计算，计算需要 27 次乘法和 18 次加法运算<br>从计算次数可以看到，同样的计算内容，两种计算顺序的差异十分巨大</li>
+</ol>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/63902d43b1fccdcd36e542cd.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/01/20/2-S%20%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%8F%98%E6%8D%A2-%E6%80%BB%E7%BB%93/"><img class="prev-cover" src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">2-S 空间描述与变换-总结</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">~@%3wlec*oe @t lWord %1-1&%#$~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9D%97-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%90%86%E8%AE%BA-%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E5%AD%A6-%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2%E4%B8%8A%E5%87%A0%E8%8A%82%E8%AE%B2%E8%BF%B0%E4%BA%86%E5%85%B3%E4%BA%8E%E5%8F%98%E6%8D%A2%E7%9A%84%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%EF%BC%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%B0%B1%E6%98%AF%E7%A0%94%E7%A9%B6%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%8F%98%E6%8D%A2%E3%80%82%E8%BF%99%E8%8A%82%E4%B8%BB%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%8F%98%E6%8D%A2%E7%9A%84%E4%B9%98%E6%B3%95%E5%92%8C%E5%8F%98%E6%8D%A2%E7%9A%84%E9%80%86%E8%BF%90%E7%AE%97%E3%80%82-%E5%A4%8D%E5%90%88%E5%8F%98%E6%8D%A2%E5%9C%A8%E5%9B%BE%E4%B8%AD%EF%BC%8C%E5%B7%B2%E7%9F%A5-CP-%E6%B1%82-AP-%E5%B7%B2%E7%9F%A5%E5%9D%90%E6%A0%87%E7%B3%BB-C-%E7%9B%B8%E5%AF%B9%E4%BA%8E%E5%9D%90%E6%A0%87%E7%B3%BB-B-%EF%BC%8C%E5%B9%B6%E5%B7%B2%E7%9F%A5%E5%9D%90%E6%A0%87%E7%B3%BB-B-%E7%9B%B8%E5%AF%B9%E4%BA%8E%E5%9D%90%E6%A0%87%E7%B3%BB-A-%E3%80%82-C-rightarrow-B-quad-B-rightarrow-A-%E5%B0%86-CP-%E5%8F%98%E6%8D%A2%E4%B8%BA-BP-%EF%BC%9A-BP-x3D-B-C-T-CP-%E7%84%B6%E5%90%8E%E5%B0%86-BP-%E5%8F%98%E6%8D%A2%E4%B8%BA-AP-%EF%BC%9A-AP-x3D-A-B-T-BP-%E5%B0%86%E4%B8%A4%E5%BC%8F%E8%81%94%E5%90%88%E5%8F%AF%E4%BB%A5%E5%BE%97%E5%88%B0%EF%BC%9A-AP-x3D-A-B-T-B-C-T-CP-%E7%94%B1%E6%AD%A4%E5%8F%AF%E4%BB%A5%E5%AE%9A%E4%B9%89%EF%BC%9A-A-C-T-x3D-A-B-T-B-C-T-%E5%8F%AF%E4%BB%A5%E6%B1%82%E5%87%BA-A-C-T-%EF%BC%9A-A-C-T-x3D-begin-pmatrix-A-B-R-amp-AP-BORG-0-amp-1-end-pmatrix-begin-pmatrix-B-C-R-amp-BP-CORG-0-amp-1-end-pmatrix-%E7%84%B6%E5%90%8E%E6%B1%82%E5%BE%97%EF%BC%9A-A-C-T"><span class="toc-number">1.</span> <span class="toc-text">#学习笔记 #机器人模块 #机器人理论 #机器人运动学 #空间描述与坐标变换上几节讲述了关于变换的相关内容，下一步就是研究如何计算变换。这节主要介绍变换的乘法和变换的逆运算。# 复合变换在图中，已知 $^CP$ 求 $^AP$已知坐标系{C}相对于坐标系{B}，并已知坐标系{B}相对于坐标系{A}。$${C}\rightarrow{B} \quad{B}\rightarrow{A}$$将 $^CP$ 变换为 $^BP$ ：$$^BP&#x3D;^B_{C}T^CP$$然后将 $^BP$ 变换为 $^AP$ ：$$^AP&#x3D;^A_{B}T^BP$$将两式联合可以得到：$$^AP&#x3D;^A_{B}T^B_{C}T^CP$$由此可以定义：$$^A_{C}T&#x3D;^A_{B}T^B_{C}T$$可以求出 $^A_{C}T$ ：$$^A_{C}T&#x3D;\begin{pmatrix}^A_{B}R &amp; ^AP_{BORG} \0 &amp; 1\end{pmatrix}\begin{pmatrix}^B_{C}R &amp; ^BP_{CORG} \0 &amp; 1\end{pmatrix}$$然后求得：$$^A_{C}T</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%86%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">逆变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B-2-5-%E6%B1%82%E9%80%86%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">例 2.5-求逆应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E6%96%B9%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">变换方程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">关于计算问题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/20/2-4%20%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97/" title="2-4 变换的计算"><img src="https://pic.imgdb.cn/item/63902d43b1fccdcd36e542cd.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-4 变换的计算"/></a><div class="content"><a class="title" href="/2023/01/20/2-4%20%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97/" title="2-4 变换的计算">2-4 变换的计算</a><time datetime="2023-01-20T13:42:04.000Z" title="Created 2023-01-20 21:42:04">2023-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/20/2-S%20%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%8F%98%E6%8D%A2-%E6%80%BB%E7%BB%93/" title="2-S 空间描述与变换-总结"><img src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-S 空间描述与变换-总结"/></a><div class="content"><a class="title" href="/2023/01/20/2-S%20%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%8F%98%E6%8D%A2-%E6%80%BB%E7%BB%93/" title="2-S 空间描述与变换-总结">2-S 空间描述与变换-总结</a><time datetime="2023-01-20T13:40:03.000Z" title="Created 2023-01-20 21:40:03">2023-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/19/WSL%E4%B8%AD%E5%AE%89%E8%A3%85ZSH%E5%B9%B6%E9%85%8D%E7%BD%AE/" title="WSL中安装ZSH并配置"><img src="https://pic.imgdb.cn/item/63902b86b1fccdcd36e03d62.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WSL中安装ZSH并配置"/></a><div class="content"><a class="title" href="/2023/01/19/WSL%E4%B8%AD%E5%AE%89%E8%A3%85ZSH%E5%B9%B6%E9%85%8D%E7%BD%AE/" title="WSL中安装ZSH并配置">WSL中安装ZSH并配置</a><time datetime="2023-01-19T14:27:22.000Z" title="Created 2023-01-19 22:27:22">2023-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/19/2-3%20%E7%AE%97%E5%AD%90%EF%BC%9A%E5%B9%B3%E7%A7%BB%E6%97%8B%E8%BD%AC%E4%B8%8E%E5%8F%98%E6%8D%A2/" title="2-3 算子：平移旋转与变换"><img src="https://pic.imgdb.cn/item/63902b75b1fccdcd36e023ec.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-3 算子：平移旋转与变换"/></a><div class="content"><a class="title" href="/2023/01/19/2-3%20%E7%AE%97%E5%AD%90%EF%BC%9A%E5%B9%B3%E7%A7%BB%E6%97%8B%E8%BD%AC%E4%B8%8E%E5%8F%98%E6%8D%A2/" title="2-3 算子：平移旋转与变换">2-3 算子：平移旋转与变换</a><time datetime="2023-01-19T14:08:33.000Z" title="Created 2023-01-19 22:08:33">2023-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/19/2-1%20%E6%8F%8F%E8%BF%B0%E4%BD%8D%E5%A7%BF/" title="2-1 描述位姿"><img src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-1 描述位姿"/></a><div class="content"><a class="title" href="/2023/01/19/2-1%20%E6%8F%8F%E8%BF%B0%E4%BD%8D%E5%A7%BF/" title="2-1 描述位姿">2-1 描述位姿</a><time datetime="2023-01-19T11:29:22.000Z" title="Created 2023-01-19 19:29:22">2023-01-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By KraftFret123</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="t,e,x" data-fontsize="13px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
