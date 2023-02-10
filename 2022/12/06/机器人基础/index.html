@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>机器人基础 | KraftFret--World 1-1</title><meta name="author" content="KraftFret123"><meta name="copyright" content="KraftFret123"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="#学习笔记 #机器人模块 #机器人理论 主要内容机器人的基础知识 概述机器人概述 1920年捷克作家Karel Capek科幻剧中的robota，农奴苦力，robot从这个衍生 机器人所具有的特性 一种机械电子装置 动作具有类似于人或其他生物体的功能 可通过编程执行多种工作，具有一定的通用性与灵活性 具有一定程度的智能，能够自主完成一些操作   Jsaac Asimov的机器人学三原则 机器人不得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器人基础">
+<meta property="og:url" content="https://kfkfkf1223.github.io/2022/12/06/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="KraftFret--World 1-1">
+<meta property="og:description" content="#学习笔记 #机器人模块 #机器人理论 主要内容机器人的基础知识 概述机器人概述 1920年捷克作家Karel Capek科幻剧中的robota，农奴苦力，robot从这个衍生 机器人所具有的特性 一种机械电子装置 动作具有类似于人或其他生物体的功能 可通过编程执行多种工作，具有一定的通用性与灵活性 具有一定程度的智能，能够自主完成一些操作   Jsaac Asimov的机器人学三原则 机器人不得">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img12334.oss-cn-beijing.aliyuncs.com/img/iTab-10.jpg">
+<meta property="article:published_time" content="2022-12-06T12:45:54.000Z">
+<meta property="article:modified_time" content="2022-12-06T13:04:52.846Z">
+<meta property="article:author" content="KraftFret123">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img12334.oss-cn-beijing.aliyuncs.com/img/iTab-10.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://kfkfkf1223.github.io/2022/12/06/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机器人基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-06 21:04:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img12334.oss-cn-beijing.aliyuncs.com/img/iTab-10.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KraftFret--World 1-1</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">机器人基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-06T12:45:54.000Z" title="Created 2022-12-06 20:45:54">2022-12-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-06T13:04:52.846Z" title="Updated 2022-12-06 21:04:52">2022-12-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/A-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9B%B8%E5%85%B3/">A-机器人相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">830</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="机器人基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>#学习笔记 #机器人模块 #机器人理论</p>
+<h1 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h1><p>机器人的基础知识</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="机器人概述"><a href="#机器人概述" class="headerlink" title="机器人概述"></a>机器人概述</h2><ul>
+<li>1920年捷克作家Karel Capek科幻剧中的robota，农奴苦力，robot从这个衍生</li>
+<li>机器人所具有的特性<ul>
+<li>一种机械电子装置</li>
+<li>动作具有类似于人或其他生物体的功能</li>
+<li>可通过编程执行多种工作，具有一定的通用性与灵活性</li>
+<li>具有一定程度的智能，能够自主完成一些操作</li>
+</ul>
+</li>
+<li>Jsaac Asimov的机器人学三原则<ul>
+<li>机器人不得伤害人或由于故障而使人遭受不幸</li>
+<li>机器人必须服从于人的指令，除非这些指令与第一原则相矛盾</li>
+<li>机器人必须能保护自己的生存，只要这种保护行为不与第一或第二原则相矛盾</li>
+</ul>
+</li>
+</ul>
+<h2 id="机器人研究内容"><a href="#机器人研究内容" class="headerlink" title="机器人研究内容"></a>机器人研究内容</h2><p>一个机器人系统的组成：</p>
+<ul>
+<li>机械结构<ul>
+<li>机器人本体</li>
+<li>传动机构</li>
+<li>执行机构</li>
+</ul>
+</li>
+<li>控制器<ul>
+<li>对机器人模型、环境模型、工作任务和控制算法的分析与实现</li>
+<li>实现人机交互</li>
+</ul>
+</li>
+<li>传感器，用来对机器人内部与外部的情况进行监控<ul>
+<li>内部传感器</li>
+<li>外部传感器</li>
+</ul>
+</li>
+<li>驱动系统，机器人的动力源<ul>
+<li>气动</li>
+<li>液压</li>
+<li>电动</li>
+</ul>
+</li>
+<li>作业信息<ul>
+<li>实现对作业对象、作业顺序等信息的分析与处理</li>
+</ul>
+</li>
+</ul>
+<p>机器人是继承了机械工程学、计算机科学、控制工程、电子技术、传感器技术、人工智能、仿生学等学科为一体的综合技术，也是多学科交叉与多学科科技革命的必然结果<br>而每一个部分的研究内容</p>
+<ul>
+<li>机械结构<ul>
+<li>机器人机构学、运动学、动力学</li>
+</ul>
+</li>
+<li>驱动与传动<ul>
+<li>驱动方式、驱动器性能和减速器等驱动、传动系统</li>
+</ul>
+</li>
+<li>传感器与感知系统<ul>
+<li>传感器技术、多传感器系统和传感器信息融合</li>
+<li>传感数据采集、传输与处理</li>
+<li>机器视觉技术</li>
+</ul>
+</li>
+<li>机器人建模与控制<ul>
+<li>控制理论</li>
+<li>控制系统结构、模型和算法</li>
+<li>多机器人协同控制</li>
+<li>控制接口设计</li>
+</ul>
+</li>
+<li>机器人规划与调度<ul>
+<li>环境建模任务规划路径规划机器人导航机器人调度与协作</li>
+</ul>
+</li>
+<li>人工智能计算机科学<ul>
+<li>机器人当中的人工智能技术</li>
+<li>人机接口人机交互机器人语言计算机网络并行处理大数据处理与云计算<br><img src="https://cdn.jsdelivr.net/gh/kfkfkf1223/blogimgs@main/PicGo/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90123.excalidraw.png"></li>
+</ul>
+</li>
+</ul>
+<p>![[image-20221202162442086.png]]</p>
+<h2 id="机器人技术发展趋势"><a href="#机器人技术发展趋势" class="headerlink" title="机器人技术发展趋势"></a>机器人技术发展趋势</h2><p>以下几个方面：</p>
+<ul>
+<li>机器人操作机构<ul>
+<li>设计机构提高机器人的负载-自重比</li>
+</ul>
+</li>
+<li>机器人控制技术<ul>
+<li>开放式模块化控制系统，驱控一体化</li>
+<li>基于PC网络式控制器以及CAD&#x2F;CAM&#x2F;机器人编程一体化</li>
+</ul>
+</li>
+<li>多传感融合技术</li>
+<li>人机共融技术</li>
+<li>机器人网络通信技术<ul>
+<li>机器人网络通信与大数据、云计算以及物联网技术的结合</li>
+</ul>
+</li>
+<li>机器人遥操作和监控技术<ul>
+<li>提升高危区域的机器人操作</li>
+</ul>
+</li>
+<li>机器人虚拟现实技术</li>
+<li>微纳机器人和微操作</li>
+<li>多智能体协调控制</li>
+<li>软体机器人</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://img12334.oss-cn-beijing.aliyuncs.com/img/iTab-10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/06/wdnmd/"><img class="prev-cover" src="https://img12334.oss-cn-beijing.aliyuncs.com/img/iTab-11.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">wdnmd</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/06/FANUC%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"><img class="next-cover" src="https://img12334.oss-cn-beijing.aliyuncs.com/img/iTab-11.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">FANUC机器人常用指令</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">~@%3wlec*oe @t lWord %1-1&%#$~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">机器人概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A0%94%E7%A9%B6%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.</span> <span class="toc-text">机器人研究内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-number">2.3.</span> <span class="toc-text">机器人技术发展趋势</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/02/10/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E5%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%9B%BE%E7%89%87/" title="如何在Hexo当中使用图片"><img src="https://pic.imgdb.cn/item/63902b93b1fccdcd36e05256.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在Hexo当中使用图片"/></a><div class="content"><a class="title" href="/2023/02/10/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E5%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%9B%BE%E7%89%87/" title="如何在Hexo当中使用图片">如何在Hexo当中使用图片</a><time datetime="2023-02-10T12:36:46.000Z" title="Created 2023-02-10 20:36:46">2023-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/20/2-4%20%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97/" title="2-4 变换的计算"><img src="https://pic.imgdb.cn/item/63902d43b1fccdcd36e542cd.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-4 变换的计算"/></a><div class="content"><a class="title" href="/2023/01/20/2-4%20%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97/" title="2-4 变换的计算">2-4 变换的计算</a><time datetime="2023-01-20T13:42:04.000Z" title="Created 2023-01-20 21:42:04">2023-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/20/2-S%20%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%8F%98%E6%8D%A2-%E6%80%BB%E7%BB%93/" title="2-S 空间描述与变换-总结"><img src="https://pic.imgdb.cn/item/63902b68b1fccdcd36e00f53.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-S 空间描述与变换-总结"/></a><div class="content"><a class="title" href="/2023/01/20/2-S%20%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%8F%98%E6%8D%A2-%E6%80%BB%E7%BB%93/" title="2-S 空间描述与变换-总结">2-S 空间描述与变换-总结</a><time datetime="2023-01-20T13:40:03.000Z" title="Created 2023-01-20 21:40:03">2023-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/19/WSL%E4%B8%AD%E5%AE%89%E8%A3%85ZSH%E5%B9%B6%E9%85%8D%E7%BD%AE/" title="WSL中安装ZSH并配置"><img src="https://pic.imgdb.cn/item/63902b86b1fccdcd36e03d62.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WSL中安装ZSH并配置"/></a><div class="content"><a class="title" href="/2023/01/19/WSL%E4%B8%AD%E5%AE%89%E8%A3%85ZSH%E5%B9%B6%E9%85%8D%E7%BD%AE/" title="WSL中安装ZSH并配置">WSL中安装ZSH并配置</a><time datetime="2023-01-19T14:27:22.000Z" title="Created 2023-01-19 22:27:22">2023-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/19/2-3%20%E7%AE%97%E5%AD%90%EF%BC%9A%E5%B9%B3%E7%A7%BB%E6%97%8B%E8%BD%AC%E4%B8%8E%E5%8F%98%E6%8D%A2/" title="2-3 算子：平移旋转与变换"><img src="https://pic.imgdb.cn/item/63902b75b1fccdcd36e023ec.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2-3 算子：平移旋转与变换"/></a><div class="content"><a class="title" href="/2023/01/19/2-3%20%E7%AE%97%E5%AD%90%EF%BC%9A%E5%B9%B3%E7%A7%BB%E6%97%8B%E8%BD%AC%E4%B8%8E%E5%8F%98%E6%8D%A2/" title="2-3 算子：平移旋转与变换">2-3 算子：平移旋转与变换</a><time datetime="2023-01-19T14:08:33.000Z" title="Created 2023-01-19 22:08:33">2023-01-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By KraftFret123</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="t,e,x" data-fontsize="13px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
